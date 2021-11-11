@@ -1,19 +1,26 @@
 Feature: As a potential client i want to interact with the mobile application
 
-  Scenario Outline: The user starts the application, registers a new user, changes the language, log out of the app and log in to the app.
-    Given The app is loaded correctly
-    When The user goes to the Sign Up page
-    And The user registers a new user with: <username>, <email>, <password>
-    Then Home page is displayed
+  Scenario Outline: The user want change to change notifications popup
 
-    When The user changes the language
-    And The user log out of the app
-    Then Login page is displayed
+    Given The user is logged: <email>, <password>
+    When the user access to settings funcionality
+    And  the user clicks the button show notifications
+    Then verify that the state of the button is <buttonStatus>
 
-    When The user logs in the application with: <email>, <password>
-    Then Home page is displayed
 
-    @Demo
+
+    @Dem
     Examples:
-      | username   | email                | password |
-      | automation | automation@gmail.com | 123456   |
+      | email                       | password    | buttonStatus|
+      | cfernandezpando30@gmail.com | norepetiras | false       |
+
+Scenario Outline: the user add a task
+  Given The user is logged: <email>, <password>
+  When the user click in proyects
+  And the user add a <task>
+  Then verify that the task <task> is added
+
+  @Demo
+  Examples:
+    | email                       | password    | task|
+    | cfernandezpando30@gmail.com | norepetiras |  tarea5   |

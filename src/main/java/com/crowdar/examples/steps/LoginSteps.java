@@ -1,12 +1,12 @@
 package com.crowdar.examples.steps;
 
 import com.crowdar.core.PageSteps;
-import com.crowdar.core.actions.MobileActionManager;
-import com.crowdar.examples.constants.LoginConstants;
+
+
 import com.crowdar.examples.services.LoginService;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 
 /**
  * This class handles the steps in the features files and connects with the service in case of having business logic.
@@ -14,19 +14,9 @@ import cucumber.api.java.en.When;
  */
 public class LoginSteps extends PageSteps {
 
-    @Given("The app is loaded correctly")
-    @Then("Login page is displayed")
-    public void isLoginPageVisible() {
-        LoginService.isViewLoaded();
-    }
 
-    @When("The user goes to the Sign Up page")
-    public void goToSignUp() {
-        MobileActionManager.click(LoginConstants.SIGN_UP_BUTTON_LOCATOR);
-    }
-
-    @When("The user logs in the application with: (.*), (.*)")
-    public void doLoginProcess(String email, String password) {
+    @Given("The user is logged: (.*), (.*)")
+    public void theUserRegistersANewUserWithEmailPassword(String email, String password) {
         LoginService.doLogin(email, password);
     }
 

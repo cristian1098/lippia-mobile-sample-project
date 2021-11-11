@@ -1,7 +1,12 @@
 package com.crowdar.examples.services;
 
 import com.crowdar.core.actions.MobileActionManager;
+import com.crowdar.driver.DriverManager;
 import com.crowdar.examples.constants.HomeConstants;
+import com.crowdar.examples.constants.LoginMobileConstants;
+import io.appium.java_client.MobileBy;
+import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 
 /**
@@ -11,8 +16,43 @@ import org.testng.Assert;
  */
 public class HomeService {
 
-    public static void isViewLoaded() {
-        MobileActionManager.waitVisibility(HomeConstants.SIGN_OUT_BUTTON_LOCATOR);
-        Assert.assertTrue(MobileActionManager.isVisible(HomeConstants.CHANGE_LANGUAGE_BUTTON_LOCATOR), HomeConstants.VIEW_NOT_DISPLAYED_MESSAGE);
+
+    public static void verifyButtonChanged(String buttonStatus) {
+
+      Assert.assertTrue( MobileActionManager.getAttribute(HomeConstants.SWITCH_SHOW_NOTIFICATION,"checked").equals(buttonStatus));
+
     }
+
+    public static void hamburguerClick() {
+        MobileActionManager.click(LoginMobileConstants.HAMBURGUER_BUTTON_LOCATOR);
+
+    }
+    public static void settingsClick(){
+        MobileActionManager.click(HomeConstants.BUTTON_SETTINGS);
+    }
+    public static void ShowNotificationsClick(){
+        MobileActionManager.click(HomeConstants.SWITCH_SHOW_NOTIFICATION);
+    }
+    public static void projectsClick(){
+        MobileActionManager.click(HomeConstants.PROJECTS_CARD);
+    }
+    public static void taskClick(){
+        MobileActionManager.click(HomeConstants.TASK_BUTTON);
+    }
+    public static void taskListClick(){
+        MobileActionManager.click(HomeConstants.ADD_BUTTON);
+    }
+    public static void inputTask(String task){
+        MobileActionManager.setInput(HomeConstants.INPUT_TEXT,task);
+    }
+    public static void saveTaskClick(){
+        MobileActionManager.click(HomeConstants.SAVE_TASK_BUTTON);
+    }
+    public static void comeBackHome(){
+        MobileActionManager.click(LoginMobileConstants.HAMBURGUER_BUTTON_LOCATOR);
+        MobileActionManager.click(HomeConstants.TEXT_TASK_PATH);
+        MobileActionManager.click(HomeConstants.TIME_TRACKER_BUTTON);
+    }
+
+
 }
